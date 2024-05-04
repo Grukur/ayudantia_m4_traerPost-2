@@ -17,3 +17,23 @@ const getPosts = async () => {
         console.log(error)
     }
 }
+
+const getPosts2 = async () => {
+    try {
+        let postInfo= [];
+        let response = await fetch('https://jsonplaceholder.typicode.com/posts');
+        let data = await response.json();
+        if (data) {
+            data.forEach(e => {
+                postInfo.push(`<li>
+                <p><strong>${e.title}</strong></p>
+                <p>${e.body}</p>
+                </li>`)                 
+            }); 
+            
+            document.getElementById('post-data').innerHTML = postInfo.join('')
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
